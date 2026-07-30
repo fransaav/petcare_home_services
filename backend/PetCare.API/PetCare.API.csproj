@@ -17,6 +17,10 @@
   <ItemGroup>
     <ProjectReference Include="..\PetCare.Application\PetCare.Application.csproj" />
     <ProjectReference Include="..\PetCare.Infrastructure\PetCare.Infrastructure.csproj" />
+    <ProjectReference Include="..\PetCare.Modules.IdentityAndPets\PetCare.Modules.IdentityAndPets.csproj" />
+    <ProjectReference Include="..\PetCare.Modules.Booking\PetCare.Modules.Booking.csproj" />
+    <ProjectReference Include="..\PetCare.Modules.Providers\PetCare.Modules.Providers.csproj" />
+    <ProjectReference Include="..\PetCare.Modules.Billing\PetCare.Modules.Billing.csproj" />
   </ItemGroup>
 
 </Project>

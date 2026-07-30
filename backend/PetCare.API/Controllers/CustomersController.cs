@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using PetCare.Application.Interfaces;
-using PetCare.Domain.Customers;
+using PetCare.Modules.IdentityAndPets.Domain;
 
 namespace PetCare.API.Controllers;
 

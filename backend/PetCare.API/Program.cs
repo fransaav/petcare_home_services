@@ -1,10 +1,10 @@
-using PetCare.Application;
-using PetCare.Infrastructure;
+using PetCare.Modules.IdentityAndPets;
+using PetCare.Modules.Booking;
+using PetCare.Modules.Providers;
+using PetCare.Modules.Billing;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
@@ -12,25 +12,22 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     });
 
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-// Register application and infrastructure services
-builder.Services.AddApplication();
-builder.Services.AddInfrastructure(builder.Configuration);
+// Register Modules
+builder.Services.AddIdentityAndPetsModule(builder.Configuration);
+builder.Services.AddBookingModule(builder.Configuration);
+builder.Services.AddProvidersModule(builder.Configuration);
+builder.Services.AddBillingModule(builder.Configuration);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

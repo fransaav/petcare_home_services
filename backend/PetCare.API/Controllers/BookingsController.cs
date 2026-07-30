@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using PetCare.Application.Interfaces;
-using PetCare.Domain.Bookings;
+using PetCare.Modules.Booking.Domain;
 
 namespace PetCare.API.Controllers;
 
