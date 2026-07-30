@@ -4,7 +4,8 @@ namespace PetCare.Modules.Booking.Application.Interfaces;
 
 public interface IBookingService
 {
-    Task<Booking?> GetBookingByIdAsync(Guid id);
-    Task<IEnumerable<Booking>> GetAllBookingsAsync();
-    Task<Booking> CreateBookingAsync(Booking booking);
+    Task<Domain.Booking?> GetBookingByIdAsync(Guid id);
+    Task<IEnumerable<Domain.Booking>> GetAllBookingsAsync();
+    Task<Domain.Booking> CreateBookingAsync(Domain.Booking booking);
+    Task ConfirmBookingAsync(Guid id);
 }

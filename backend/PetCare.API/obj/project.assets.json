@@ -51,6 +51,52 @@
           }
         }
       },
+      "MassTransit/8.3.6": {
+        "type": "package",
+        "dependencies": {
+          "MassTransit.Abstractions": "8.3.6"
+        },
+        "compile": {
+          "lib/net9.0/MassTransit.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/MassTransit.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "MassTransit.Abstractions/8.3.6": {
+        "type": "package",
+        "compile": {
+          "lib/net9.0/MassTransit.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/MassTransit.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "MassTransit.RabbitMQ/8.3.6": {
+        "type": "package",
+        "dependencies": {
+          "MassTransit": "8.3.6",
+          "RabbitMQ.Client": "7.0.0"
+        },
+        "compile": {
+          "lib/net9.0/MassTransit.RabbitMqTransport.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/MassTransit.RabbitMqTransport.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.AspNetCore.OpenApi/10.0.10": {
         "type": "package",
         "dependencies": {
@@ -826,6 +872,19 @@
           }
         }
       },
+      "RabbitMQ.Client/7.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/RabbitMQ.Client.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/RabbitMQ.Client.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "System.ClientModel/1.5.1": {
         "type": "package",
         "dependencies": {
@@ -1058,42 +1117,79 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
-      "PetCare.Application/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v10.0",
-        "dependencies": {
-          "PetCare.Domain": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/PetCare.Application.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/PetCare.Application.dll": {}
-        }
-      },
-      "PetCare.Domain/1.0.0": {
+      "PetCare.IntegrationEvents/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "compile": {
-          "bin/placeholder/PetCare.Domain.dll": {}
+          "bin/placeholder/PetCare.IntegrationEvents.dll": {}
         },
         "runtime": {
-          "bin/placeholder/PetCare.Domain.dll": {}
+          "bin/placeholder/PetCare.IntegrationEvents.dll": {}
         }
       },
-      "PetCare.Infrastructure/1.0.0": {
+      "PetCare.Modules.Billing/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
+          "MassTransit": "8.3.6",
+          "Microsoft.EntityFrameworkCore": "10.0.10",
           "Microsoft.EntityFrameworkCore.SqlServer": "10.0.10",
-          "PetCare.Application": "1.0.0",
-          "PetCare.Domain": "1.0.0"
+          "PetCare.IntegrationEvents": "1.0.0",
+          "PetCare.Modules.Booking": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/PetCare.Infrastructure.dll": {}
+          "bin/placeholder/PetCare.Modules.Billing.dll": {}
         },
         "runtime": {
-          "bin/placeholder/PetCare.Infrastructure.dll": {}
+          "bin/placeholder/PetCare.Modules.Billing.dll": {}
+        }
+      },
+      "PetCare.Modules.Booking/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "MassTransit": "8.3.6",
+          "Microsoft.EntityFrameworkCore": "10.0.10",
+          "Microsoft.EntityFrameworkCore.SqlServer": "10.0.10",
+          "PetCare.IntegrationEvents": "1.0.0",
+          "PetCare.Modules.IdentityAndPets": "1.0.0",
+          "PetCare.Modules.Providers": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/PetCare.Modules.Booking.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PetCare.Modules.Booking.dll": {}
+        }
+      },
+      "PetCare.Modules.IdentityAndPets/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "10.0.10",
+          "Microsoft.EntityFrameworkCore.SqlServer": "10.0.10"
+        },
+        "compile": {
+          "bin/placeholder/PetCare.Modules.IdentityAndPets.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PetCare.Modules.IdentityAndPets.dll": {}
+        }
+      },
+      "PetCare.Modules.Providers/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "MassTransit": "8.3.6",
+          "Microsoft.EntityFrameworkCore": "10.0.10",
+          "Microsoft.EntityFrameworkCore.SqlServer": "10.0.10",
+          "PetCare.IntegrationEvents": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/PetCare.Modules.Providers.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PetCare.Modules.Providers.dll": {}
         }
       }
     }
@@ -1155,6 +1251,69 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "MassTransit/8.3.6": {
+      "sha512": "iQQ02dUJuWlpNai3eDN7WmnstvmB2LAD8YN1i8OFT5BaNpGYYg3v0US3S6f1Zz7us+NnGHm6csg25Ak3z0H7Xg==",
+      "type": "package",
+      "path": "masstransit/8.3.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NuGet.README.md",
+        "lib/net472/MassTransit.dll",
+        "lib/net472/MassTransit.xml",
+        "lib/net8.0/MassTransit.dll",
+        "lib/net8.0/MassTransit.xml",
+        "lib/net9.0/MassTransit.dll",
+        "lib/net9.0/MassTransit.xml",
+        "lib/netstandard2.0/MassTransit.dll",
+        "lib/netstandard2.0/MassTransit.xml",
+        "masstransit.8.3.6.nupkg.sha512",
+        "masstransit.nuspec",
+        "mt-logo-small.png"
+      ]
+    },
+    "MassTransit.Abstractions/8.3.6": {
+      "sha512": "F3R3EFPvUvpsiebnijmpvZ4IhSEcqkEJdrhlFuTOjzIUnMRYBgki/oDfFWj57Ki4b9yq0nilt4Q5bk11pC4ygg==",
+      "type": "package",
+      "path": "masstransit.abstractions/8.3.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NuGet.README.md",
+        "lib/net472/MassTransit.Abstractions.dll",
+        "lib/net472/MassTransit.Abstractions.xml",
+        "lib/net8.0/MassTransit.Abstractions.dll",
+        "lib/net8.0/MassTransit.Abstractions.xml",
+        "lib/net9.0/MassTransit.Abstractions.dll",
+        "lib/net9.0/MassTransit.Abstractions.xml",
+        "lib/netstandard2.0/MassTransit.Abstractions.dll",
+        "lib/netstandard2.0/MassTransit.Abstractions.xml",
+        "masstransit.abstractions.8.3.6.nupkg.sha512",
+        "masstransit.abstractions.nuspec",
+        "mt-logo-small.png"
+      ]
+    },
+    "MassTransit.RabbitMQ/8.3.6": {
+      "sha512": "gR67/f8reudNVUf0yDdUBuDLBFjDdqCSF8K3XaIlpHSRmmCUTBVPVrt0h65/Zty00okBHzcbUX32bLZeQL51sw==",
+      "type": "package",
+      "path": "masstransit.rabbitmq/8.3.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NuGet.README.md",
+        "lib/net472/MassTransit.RabbitMqTransport.dll",
+        "lib/net472/MassTransit.RabbitMqTransport.xml",
+        "lib/net8.0/MassTransit.RabbitMqTransport.dll",
+        "lib/net8.0/MassTransit.RabbitMqTransport.xml",
+        "lib/net9.0/MassTransit.RabbitMqTransport.dll",
+        "lib/net9.0/MassTransit.RabbitMqTransport.xml",
+        "lib/netstandard2.0/MassTransit.RabbitMqTransport.dll",
+        "lib/netstandard2.0/MassTransit.RabbitMqTransport.xml",
+        "masstransit.rabbitmq.8.3.6.nupkg.sha512",
+        "masstransit.rabbitmq.nuspec",
+        "mt-logo-small.png"
       ]
     },
     "Microsoft.AspNetCore.OpenApi/10.0.10": {
@@ -2797,6 +2956,23 @@
         "packageIcon.png"
       ]
     },
+    "RabbitMQ.Client/7.0.0": {
+      "sha512": "8YJz22mOSMtkbIVuVSz2HbJwbpKwRoXQ1uqbczDUt1w1Ds8dxFs6dkV/oZ8AlTmkErZjtQelHv+oBu52ud00WA==",
+      "type": "package",
+      "path": "rabbitmq.client/7.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "icon.png",
+        "lib/net8.0/RabbitMQ.Client.dll",
+        "lib/net8.0/RabbitMQ.Client.xml",
+        "lib/netstandard2.0/RabbitMQ.Client.dll",
+        "lib/netstandard2.0/RabbitMQ.Client.xml",
+        "rabbitmq.client.7.0.0.nupkg.sha512",
+        "rabbitmq.client.nuspec"
+      ]
+    },
     "System.ClientModel/1.5.1": {
       "sha512": "k2jKSO0X45IqhVOT9iQB4xralNN9foRQsRvXBTyRpAVxyzCJlG895T9qYrQWbcJ6OQXxOouJQ37x5nZH5XKK+A==",
       "type": "package",
@@ -3150,32 +3326,48 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "PetCare.Application/1.0.0": {
+    "PetCare.IntegrationEvents/1.0.0": {
       "type": "project",
-      "path": "../PetCare.Application/PetCare.Application.csproj",
-      "msbuildProject": "../PetCare.Application/PetCare.Application.csproj"
+      "path": "../PetCare.IntegrationEvents/PetCare.IntegrationEvents.csproj",
+      "msbuildProject": "../PetCare.IntegrationEvents/PetCare.IntegrationEvents.csproj"
     },
-    "PetCare.Domain/1.0.0": {
+    "PetCare.Modules.Billing/1.0.0": {
       "type": "project",
-      "path": "../PetCare.Domain/PetCare.Domain.csproj",
-      "msbuildProject": "../PetCare.Domain/PetCare.Domain.csproj"
+      "path": "../PetCare.Modules.Billing/PetCare.Modules.Billing.csproj",
+      "msbuildProject": "../PetCare.Modules.Billing/PetCare.Modules.Billing.csproj"
     },
-    "PetCare.Infrastructure/1.0.0": {
+    "PetCare.Modules.Booking/1.0.0": {
       "type": "project",
-      "path": "../PetCare.Infrastructure/PetCare.Infrastructure.csproj",
-      "msbuildProject": "../PetCare.Infrastructure/PetCare.Infrastructure.csproj"
+      "path": "../PetCare.Modules.Booking/PetCare.Modules.Booking.csproj",
+      "msbuildProject": "../PetCare.Modules.Booking/PetCare.Modules.Booking.csproj"
+    },
+    "PetCare.Modules.IdentityAndPets/1.0.0": {
+      "type": "project",
+      "path": "../PetCare.Modules.IdentityAndPets/PetCare.Modules.IdentityAndPets.csproj",
+      "msbuildProject": "../PetCare.Modules.IdentityAndPets/PetCare.Modules.IdentityAndPets.csproj"
+    },
+    "PetCare.Modules.Providers/1.0.0": {
+      "type": "project",
+      "path": "../PetCare.Modules.Providers/PetCare.Modules.Providers.csproj",
+      "msbuildProject": "../PetCare.Modules.Providers/PetCare.Modules.Providers.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
+      "MassTransit >= 8.3.6",
+      "MassTransit.RabbitMQ >= 8.3.6",
       "Microsoft.AspNetCore.OpenApi >= 10.0.10",
       "Microsoft.EntityFrameworkCore.Design >= 10.0.10",
-      "PetCare.Application >= 1.0.0",
-      "PetCare.Infrastructure >= 1.0.0"
+      "PetCare.IntegrationEvents >= 1.0.0",
+      "PetCare.Modules.Billing >= 1.0.0",
+      "PetCare.Modules.Booking >= 1.0.0",
+      "PetCare.Modules.IdentityAndPets >= 1.0.0",
+      "PetCare.Modules.Providers >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\franc\\.nuget\\packages\\": {}
+    "C:\\Users\\franc\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
@@ -3186,13 +3378,19 @@
       "packagesPath": "C:\\Users\\franc\\.nuget\\packages\\",
       "outputPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.API\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\franc\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\franc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3200,11 +3398,20 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Application\\PetCare.Application.csproj": {
-              "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Application\\PetCare.Application.csproj"
+            "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj": {
+              "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj"
             },
-            "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Infrastructure\\PetCare.Infrastructure.csproj": {
-              "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Infrastructure\\PetCare.Infrastructure.csproj"
+            "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Billing\\PetCare.Modules.Billing.csproj": {
+              "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Billing\\PetCare.Modules.Billing.csproj"
+            },
+            "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Booking\\PetCare.Modules.Booking.csproj": {
+              "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Booking\\PetCare.Modules.Booking.csproj"
+            },
+            "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj": {
+              "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj"
+            },
+            "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Providers\\PetCare.Modules.Providers.csproj": {
+              "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Providers\\PetCare.Modules.Providers.csproj"
             }
           }
         }
@@ -3226,6 +3433,14 @@
         "framework": "net10.0",
         "targetAlias": "net10.0",
         "dependencies": {
+          "MassTransit": {
+            "target": "Package",
+            "version": "[8.3.6, )"
+          },
+          "MassTransit.RabbitMQ": {
+            "target": "Package",
+            "version": "[8.3.6, )"
+          },
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[10.0.10, )"

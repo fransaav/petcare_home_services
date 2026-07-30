@@ -7,9 +7,9 @@ namespace PetCare.Modules.Providers.Infrastructure;
 
 public class ProviderRepository : IProviderRepository
 {
-    private readonly PetCareDbContext _context;
+    private readonly ProvidersDbContext _context;
 
-    public ProviderRepository(PetCareDbContext context)
+    public ProviderRepository(ProvidersDbContext context)
     {
         _context = context;
     }

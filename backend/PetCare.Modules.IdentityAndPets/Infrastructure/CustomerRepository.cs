@@ -7,9 +7,9 @@ namespace PetCare.Modules.IdentityAndPets.Infrastructure;
 
 public class CustomerRepository : ICustomerRepository
 {
-    private readonly PetCareDbContext _context;
+    private readonly IdentityAndPetsDbContext _context;
 
-    public CustomerRepository(PetCareDbContext context)
+    public CustomerRepository(IdentityAndPetsDbContext context)
     {
         _context = context;
     }

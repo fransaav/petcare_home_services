@@ -4,8 +4,8 @@ namespace PetCare.Modules.Booking.Application.Interfaces;
 
 public interface IBookingRepository
 {
-    Task<Booking?> GetByIdAsync(Guid id);
-    Task<IEnumerable<Booking>> GetAllAsync();
-    Task<Booking> AddAsync(Booking booking);
+    Task<Domain.Booking?> GetByIdAsync(Guid id);
+    Task<IEnumerable<Domain.Booking>> GetAllAsync();
+    Task<Domain.Booking> AddAsync(Domain.Booking booking);
     Task SaveChangesAsync();
 }

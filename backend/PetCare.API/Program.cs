@@ -2,6 +2,9 @@ using PetCare.Modules.IdentityAndPets;
 using PetCare.Modules.Booking;
 using PetCare.Modules.Providers;
 using PetCare.Modules.Billing;
+using MassTransit;
+using PetCare.Modules.Booking.Application.Consumers;
+using PetCare.Modules.Billing.Application.Consumers;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +22,24 @@ builder.Services.AddIdentityAndPetsModule(builder.Configuration);
 builder.Services.AddBookingModule(builder.Configuration);
 builder.Services.AddProvidersModule(builder.Configuration);
 builder.Services.AddBillingModule(builder.Configuration);
+
+builder.Services.AddMassTransit(x =>
+{
+    x.AddConsumer<ServiceStatusUpdatedEventConsumer>();
+    x.AddConsumer<BookingConfirmedEventConsumer>();
+
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host("localhost", "/", h =>
+        {
+            h.Username("guest");
+            h.Password("guest");
+        });
+
+        cfg.ConfigureEndpoints(context);
+    });
+});
+
 
 var app = builder.Build();
 

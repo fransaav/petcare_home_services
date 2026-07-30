@@ -7,20 +7,20 @@ namespace PetCare.Modules.Booking.Infrastructure;
 
 public class BookingRepository : IBookingRepository
 {
-    private readonly PetCareDbContext _context;
+    private readonly BookingDbContext _context;
 
-    public BookingRepository(PetCareDbContext context)
+    public BookingRepository(BookingDbContext context)
     {
         _context = context;
     }
 
-    public async Task<Booking> AddAsync(Booking booking)
+    public async Task<Domain.Booking> AddAsync(Domain.Booking booking)
     {
-        await _context.Bookings.AddAsync(booking);
-        return booking;
+        _context.Bookings.Add(booking);
+        return await Task.FromResult(booking);
     }
 
-    public async Task<IEnumerable<Booking>> GetAllAsync()
+    public async Task<IEnumerable<Domain.Booking>> GetAllAsync()
     {
         return await _context.Bookings
             .Include(b => b.Customer)
@@ -29,7 +29,7 @@ public class BookingRepository : IBookingRepository
             .ToListAsync();
     }
 
-    public async Task<Booking?> GetByIdAsync(Guid id)
+    public async Task<Domain.Booking?> GetByIdAsync(Guid id)
     {
         return await _context.Bookings
             .Include(b => b.Customer)

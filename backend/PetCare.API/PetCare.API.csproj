@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MassTransit" Version="8.3.6" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.3.6" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.10">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -15,12 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PetCare.Application\PetCare.Application.csproj" />
-    <ProjectReference Include="..\PetCare.Infrastructure\PetCare.Infrastructure.csproj" />
     <ProjectReference Include="..\PetCare.Modules.IdentityAndPets\PetCare.Modules.IdentityAndPets.csproj" />
     <ProjectReference Include="..\PetCare.Modules.Booking\PetCare.Modules.Booking.csproj" />
     <ProjectReference Include="..\PetCare.Modules.Providers\PetCare.Modules.Providers.csproj" />
     <ProjectReference Include="..\PetCare.Modules.Billing\PetCare.Modules.Billing.csproj" />
+    <ProjectReference Include="..\PetCare.IntegrationEvents\PetCare.IntegrationEvents.csproj" />
   </ItemGroup>
 
 </Project>

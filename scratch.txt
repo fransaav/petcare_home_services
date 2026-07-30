@@ -1,0 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using PetCare.Application.Interfaces;
+using PetCare.Domain.Customers;
+using PetCare.Infrastructure.Data; // Assuming PetCareDbContext is accessible or we should use an IRepository. But for a simple core, injecting DbContext directly is fine. Wait, Application should not reference Infrastructure directly in a strict clean architecture!
+
+// Let's refactor: The DbContext is in Infrastructure. If Application references DbContext directly, it breaks the dependency rule.
+// We have two options:
+// 1. Create Repository interfaces in Application, implement them in Infrastructure.
+// 2. Just put the basic services in Infrastructure for now, or create IRepository in Application.
+
+// I will create IRepository interfaces in Application to be strictly correct.

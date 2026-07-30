@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using PetCare.Application.Interfaces;
+using PetCare.Modules.Booking.Application.Interfaces;
 using PetCare.Modules.Booking.Domain;
 
 namespace PetCare.API.Controllers;
@@ -31,7 +31,7 @@ public class BookingsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] Booking booking)
+    public async Task<IActionResult> Create([FromBody] PetCare.Modules.Booking.Domain.Booking booking)
     {
         var created = await _bookingService.CreateBookingAsync(booking);
         return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);

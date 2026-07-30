@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="PetCare.API/PetCare.API.csproj" />
+  <Project Path="PetCare.IntegrationEvents/PetCare.IntegrationEvents.csproj" />
   <Project Path="PetCare.Modules.Billing/PetCare.Modules.Billing.csproj" />
   <Project Path="PetCare.Modules.Booking/PetCare.Modules.Booking.csproj" />
   <Project Path="PetCare.Modules.IdentityAndPets/PetCare.Modules.IdentityAndPets.csproj" />
