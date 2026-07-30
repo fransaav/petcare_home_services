@@ -33,6 +33,16 @@ public class BookingService : IBookingService
         booking.Status = "Pending";
         var result = await _repository.AddAsync(booking);
         await _repository.SaveChangesAsync();
+
+        await _publishEndpoint.Publish(new BookingCreatedEvent
+        {
+            BookingId = booking.Id,
+            CustomerId = booking.CustomerId,
+            PetId = booking.PetId,
+            ServiceType = booking.ServiceType,
+            TotalCost = booking.TotalCost
+        });
+
         return result;
     }
 

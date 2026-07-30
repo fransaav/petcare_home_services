@@ -5,6 +5,7 @@ using PetCare.Modules.Billing;
 using MassTransit;
 using PetCare.Modules.Booking.Application.Consumers;
 using PetCare.Modules.Billing.Application.Consumers;
+using PetCare.Modules.Providers.Application.Consumers;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,8 +26,16 @@ builder.Services.AddBillingModule(builder.Configuration);
 
 builder.Services.AddMassTransit(x =>
 {
+    // Existing
     x.AddConsumer<ServiceStatusUpdatedEventConsumer>();
     x.AddConsumer<BookingConfirmedEventConsumer>();
+
+    // New Saga (Choreography) Consumers
+    x.AddConsumer<BookingCreatedEventConsumer>();
+    x.AddConsumer<PaymentProcessedEventConsumer>();
+    x.AddConsumer<PaymentFailedEventConsumer>();
+    x.AddConsumer<ProviderAssignedEventConsumer>();
+    x.AddConsumer<ProviderAssignmentFailedEventConsumer>();
 
     x.UsingRabbitMq((context, cfg) =>
     {

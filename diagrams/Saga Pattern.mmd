@@ -1,0 +1,61 @@
+C4Container
+    title C4 (Containers) - PetCare Home Services System
+
+    %% Actors
+    Person(customer, "Pet Owner", "Manages profiles, books services, and makes payments.")
+    Person(provider, "Service Provider", "Walkers, vets, and groomers who attend bookings.")
+
+    %% External Systems
+    System_Ext(maps, "Mapping Service", "Google Maps / Mapbox", "Calculates routes and geographic validation for home visits.")
+    System_Ext(payment_gw, "Payment Gateway", "Stripe / PayPal", "Processes online credit/debit card payments.")
+
+    System_Boundary(sys, "PetCare Platform (Modular Monolith)") {
+        
+        %% Frontend Applications
+        Container(mobile, "Mobile App", "iOS / Android", "Main access point for clients and providers (Online Booking and Mobile Access).")
+        
+        %% Gateway
+        Container(api, "API Gateway / REST API", "ASP.NET Core 10", "Unified entry point. Routes requests and validates authentication.")
+        
+        %% Business Modules
+        Container(mod_identity, "Identity & Pets Module", ".NET", "User profiles, pets (vaccination records), and security.")
+        Container(mod_booking, "Booking Module", ".NET", "Booking lifecycle, service type assignment, and business rules.")
+        Container(mod_providers, "Providers Module", ".NET", "Staff management, franchise locations, availability, and appointment rejection.")
+        Container(mod_billing, "Billing Module", ".NET", "Billing logic, handling of promotions (national and local).")
+        Container(mod_notifications, "Notifications Module", ".NET", "Sending reminders, confirmations, and alerts to users.")
+
+        %% Infrastructure
+        ContainerQueue(rabbitmq, "Message Broker", "RabbitMQ", "Event Bus (Event-Driven) for asynchronous coordination and Saga Pattern.")
+        ContainerDb(db, "SQL Server Database", "SQL Server 2022", "Data persistence. Logically separated schemas for each module.")
+    }
+
+    %% User Relationships
+    Rel(customer, mobile, "Uses and books online", "HTTPS")
+    Rel(provider, mobile, "Uses to update status", "HTTPS")
+    
+    %% Frontend to Backend Relationships
+    Rel(mobile, api, "REST Calls", "JSON/HTTPS")
+
+    %% Gateway to Modules Relationships (Synchronous In-Process Communication)
+    Rel(api, mod_identity, "Delegates to", "C# Call")
+    Rel(api, mod_booking, "Delegates to", "C# Call")
+    Rel(api, mod_providers, "Delegates to", "C# Call")
+    Rel(api, mod_billing, "Delegates to", "C# Call")
+
+    %% External Systems Relationships
+    Rel(mod_booking, maps, "Queries distances for home services", "REST/HTTPS")
+    Rel(mod_billing, payment_gw, "Initiates and processes payment transactions", "REST/HTTPS")
+
+    %% Database Relationships
+    Rel(mod_identity, db, "Reads/Writes to [Identity] schema", "EF Core")
+    Rel(mod_booking, db, "Reads/Writes to [Booking] schema", "EF Core")
+    Rel(mod_providers, db, "Reads/Writes to [Providers] schema", "EF Core")
+    Rel(mod_billing, db, "Reads/Writes to [Billing] schema", "EF Core")
+
+    %% Event Relationships (Asynchronous Communication)
+    Rel_Back(rabbitmq, mod_booking, "Publishes/Consumes events (Saga)", "MassTransit")
+    Rel_Back(rabbitmq, mod_billing, "Publishes/Consumes events (Saga)", "MassTransit")
+    Rel_Back(rabbitmq, mod_providers, "Publishes/Consumes events (Saga)", "MassTransit")
+    Rel(mod_notifications, rabbitmq, "Consumes events to send alerts", "MassTransit")
+
+    UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="1")
