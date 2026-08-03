@@ -1,0 +1,39 @@
+using Microsoft.AspNetCore.Mvc;
+using PetCare.Application.Interfaces;
+using PetCare.Domain.Providers;
+
+namespace PetCare.API.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class ProvidersController : ControllerBase
+{
+    private readonly IProviderService _providerService;
+
+    public ProvidersController(IProviderService providerService)
+    {
+        _providerService = providerService;
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        var providers = await _providerService.GetAllProvidersAsync();
+        return Ok(providers);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(Guid id)
+    {
+        var provider = await _providerService.GetProviderByIdAsync(id);
+        if (provider == null) return NotFound();
+        return Ok(provider);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] Provider provider)
+    {
+        var created = await _providerService.CreateProviderAsync(provider);
+        return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
+    }
+}

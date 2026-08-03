@@ -1,0 +1,63 @@
+C4Component
+    title Diagrama de Componentes (Nivel 3) - Backend API
+
+    %% Elementos externos al API
+    Container(app, "App Móvil / Web", "Flutter", "Llama a la API")
+    ContainerDb(db, "Base de Datos", "SQL Server", "Persistencia")
+    
+    System_Ext(paymentGateway, "Pagos", "Stripe")
+    System_Ext(notificationService, "Notificaciones", "SendGrid")
+    System_Ext(mapService, "Mapas", "Google Maps")
+
+    Container_Boundary(api, "Backend API (.NET Core)") {
+        
+        %% Capa de Presentación / API
+        Component(customerCtrl, "Customers Controller", "REST", "Endpoints de clientes")
+        Component(providerCtrl, "Providers Controller", "REST", "Endpoints de proveedores")
+        Component(bookingCtrl, "Bookings Controller", "REST", "Endpoints de reservas")
+        
+        %% Capa de Aplicación (Business Logic)
+        Component(customerSvc, "Customer Service", "C#", "Lógica de perfiles y mascotas")
+        Component(providerSvc, "Provider Service", "C#", "Lógica y disponibilidad")
+        Component(bookingSvc, "Booking Service", "C#", "Orquestador de reservas")
+        
+        %% Capa de Integración (Futuros / Planeados)
+        Component(billingSvc, "Billing Service", "C#", "Lógica de cobros y promociones")
+        Component(routingSvc, "Routing Service", "C#", "Cálculo de logística a domicilio")
+        Component(alertSvc, "Alert Service", "C#", "Gestor de plantillas y notificaciones")
+        
+        %% Capa de Infraestructura (Data Access)
+        Component(customerRepo, "Customer Repo", "EF Core", "CRUD Clientes")
+        Component(providerRepo, "Provider Repo", "EF Core", "CRUD Proveedores")
+        Component(bookingRepo, "Booking Repo", "EF Core", "CRUD Reservas")
+    }
+
+    %% App llama a los controladores
+    Rel_D(app, customerCtrl, "Llama a", "HTTPS")
+    Rel_D(app, providerCtrl, "Llama a", "HTTPS")
+    Rel_D(app, bookingCtrl, "Llama a", "HTTPS")
+
+    %% Controladores delegan a Servicios
+    Rel_D(customerCtrl, customerSvc, "Delega")
+    Rel_D(providerCtrl, providerSvc, "Delega")
+    Rel_D(bookingCtrl, bookingSvc, "Delega")
+
+    %% Servicios de Dominio interactúan con Integraciones
+    Rel_D(bookingSvc, billingSvc, "Procesa pago")
+    Rel_D(bookingSvc, routingSvc, "Valida ruta")
+    Rel_D(bookingSvc, alertSvc, "Notifica estado")
+
+    %% Servicios acceden a Repositorios
+    Rel_D(customerSvc, customerRepo, "Usa")
+    Rel_D(providerSvc, providerRepo, "Usa")
+    Rel_D(bookingSvc, bookingRepo, "Usa")
+    
+    %% Repositorios a la Base de Datos
+    Rel_D(customerRepo, db, "SQL", "TCP")
+    Rel_D(providerRepo, db, "SQL", "TCP")
+    Rel_D(bookingRepo, db, "SQL", "TCP")
+    
+    %% Integraciones a Sistemas Externos
+    Rel_D(billingSvc, paymentGateway, "HTTP POST")
+    Rel_D(routingSvc, mapService, "HTTP GET")
+    Rel_D(alertSvc, notificationService, "HTTP POST")

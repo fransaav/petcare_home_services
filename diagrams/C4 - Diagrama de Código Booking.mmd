@@ -1,0 +1,65 @@
+classDiagram
+    direction TB
+    
+    %% Capa de Presentación / API
+    class BookingsController {
+        -IBookingService _bookingService
+        +GetAll() Task
+        +GetById(Guid id) Task
+        +Create(Booking booking) Task
+    }
+
+    %% Capa de Aplicación
+    class IBookingService {
+        <<interface>>
+        +GetBookingByIdAsync(Guid id) Task
+        +GetAllBookingsAsync() Task
+        +CreateBookingAsync(Booking booking) Task
+    }
+
+    class BookingService {
+        -IBookingRepository _repository
+        +GetBookingByIdAsync(Guid id) Task
+        +GetAllBookingsAsync() Task
+        +CreateBookingAsync(Booking booking) Task
+    }
+
+    %% Capa de Infraestructura (Repositorios)
+    class IBookingRepository {
+        <<interface>>
+        +GetByIdAsync(Guid id) Task
+        +GetAllAsync() Task
+        +AddAsync(Booking booking) Task
+        +SaveChangesAsync() Task
+    }
+
+    class BookingRepository {
+        -PetCareDbContext _context
+        +GetByIdAsync(Guid id) Task
+        +GetAllAsync() Task
+        +AddAsync(Booking booking) Task
+        +SaveChangesAsync() Task
+    }
+
+    %% Capa de Dominio (Entidad Central)
+    class Booking {
+        +Guid Id
+        +Guid CustomerId
+        +Guid PetId
+        +Guid ProviderId
+        +string ServiceType
+        +string Modality
+        +DateTime ScheduledTime
+        +string Status
+        +decimal TotalCost
+    }
+
+    %% Relaciones de Inyección de Dependencias (DIP) y herencia
+    BookingsController --> IBookingService : Se inyecta (DI)
+    BookingService ..|> IBookingService : Implementa
+    BookingService --> IBookingRepository : Se inyecta (DI)
+    BookingRepository ..|> IBookingRepository : Implementa
+    
+    %% Relación de uso con la entidad de dominio
+    IBookingService ..> Booking : Manipula
+    IBookingRepository ..> Booking : Persiste / Consulta

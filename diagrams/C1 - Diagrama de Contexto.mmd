@@ -1,0 +1,25 @@
+C4Context
+    title Diagrama de Contexto (Nivel 1) - Pet Care Services
+
+    %% Actores
+    Person(customer, "Cliente", "Dueño de Mascota. Busca servicios y paga.")
+    System(petcareSystem, "Sistema Pet Care", "Plataforma central de reservas y logística.")
+    Person(provider, "Proveedor", "Ofrece servicios y gestiona disponibilidad.")
+    
+    %% Sistemas Externos
+    System_Ext(paymentGateway, "Pasarela de Pagos", "Procesa pagos (ej. Stripe)")
+    System_Ext(notificationService, "Notificaciones", "Envía Emails/SMS (ej. SendGrid)")
+    System_Ext(mapService, "Servicio de Mapas", "Calcula rutas (ej. Google Maps)")
+
+    %% Forzamos direcciones: Cliente a la Derecha(R) hacia el sistema, Proveedor a la Izquierda(L) hacia el sistema
+    Rel_R(customer, petcareSystem, "Reserva y paga", "App/Web")
+    Rel_L(provider, petcareSystem, "Gestiona servicios", "App/Web")
+    
+    %% Del sistema Hacia Abajo(D) a las integraciones
+    Rel_D(petcareSystem, paymentGateway, "Procesa transacción", "API")
+    Rel_D(petcareSystem, notificationService, "Dispara alertas", "API")
+    Rel_D(petcareSystem, mapService, "Solicita rutas", "API")
+
+    %% Del sistema de notificaciones Hacia Arriba(U) a los usuarios
+    Rel_U(notificationService, customer, "Avisa estado")
+    Rel_U(notificationService, provider, "Avisa nueva reserva")
