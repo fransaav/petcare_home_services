@@ -1,0 +1,85 @@
+C4Component
+    title Diagrama de Componentes (Nivel 3) - Backend API (Monolito Modular con Eventos)
+
+    %% Elementos externos al API
+    Container(app, "App Móvil / Web", "Flutter", "Llama a la API")
+
+    Container_Boundary(api, "Backend API (.NET Core)") {
+        
+        System_Boundary(modIdentityPets, "Module: IdentityAndPets") {
+            Component(customersCtrl, "Customers Controller", "REST", "Endpoints de clientes")
+            Component(customerSvc, "Customer Service", "C#", "Lógica de perfiles y mascotas")
+            Component(customerRepo, "Customer Repo", "EF Core", "CRUD Clientes")
+            ComponentDb(identityDb, "IdentityAndPets DbContext", "SQL Server", "Datos de usuarios y mascotas")
+        }
+        
+        System_Boundary(modProviders, "Module: Providers") {
+            Component(providersCtrl, "Providers Controller", "REST", "Endpoints de proveedores")
+            Component(providerSvc, "Provider Service", "C#", "Lógica y disponibilidad")
+            Component(providerRepo, "Provider Repo", "EF Core", "CRUD Proveedores")
+            ComponentDb(providersDb, "Providers DbContext", "SQL Server", "Datos de proveedores")
+        }
+        
+        System_Boundary(modBooking, "Module: Booking") {
+            Component(bookingsCtrl, "Bookings Controller", "REST", "Endpoints de reservas")
+            Component(bookingSvc, "Booking Service", "C#", "Orquestador de reservas")
+            Component(serviceStatusConsumer, "ServiceStatusConsumer", "MassTransit", "Escucha ServiceStatusUpdatedEvent")
+            Component(bookingRepo, "Booking Repo", "EF Core", "CRUD Reservas")
+            ComponentDb(bookingDb, "Booking DbContext", "SQL Server", "Datos de reservas")
+        }
+        
+        System_Boundary(modBilling, "Module: Billing") {
+            Component(billingSvc, "Billing Service", "C#", "Lógica de cobros y promociones")
+            Component(bookingConfirmedConsumer, "BookingConfirmedConsumer", "MassTransit", "Escucha BookingConfirmedEvent")
+            ComponentDb(billingDb, "Billing DbContext", "SQL Server", "Datos de pagos y facturación")
+        }
+        
+        %% Componentes transversales o integraciones
+        Component(msgBroker, "RabbitMQ", "Message Broker", "Bus de Eventos")
+        Component(routingSvc, "Routing Service", "C#", "Cálculo de logística a domicilio")
+        Component(alertSvc, "Alert Service", "C#", "Gestor de notificaciones")
+    }
+
+    System_Ext(paymentGateway, "Pagos", "Stripe")
+    System_Ext(notificationService, "Notificaciones", "SendGrid")
+    System_Ext(mapService, "Mapas", "Google Maps")
+
+    %% App llama a los controladores
+    Rel(app, customersCtrl, "Llama a", "HTTPS")
+    Rel(app, providersCtrl, "Llama a", "HTTPS")
+    Rel(app, bookingsCtrl, "Llama a", "HTTPS")
+    
+    %% Un enlace invisible desde App a Billing para forzar que Billing esté al mismo nivel que los demás
+    Rel(app, billingSvc, " ", " ")
+
+    %% Flujos internos dentro de IdentityAndPets
+    Rel(customersCtrl, customerSvc, "Delega")
+    Rel(customerSvc, customerRepo, "Usa")
+    Rel(customerRepo, identityDb, "SQL", "TCP")
+    
+    %% Flujos internos dentro de Providers
+    Rel(providersCtrl, providerSvc, "Delega")
+    Rel(providerSvc, providerRepo, "Usa")
+    Rel(providerRepo, providersDb, "SQL", "TCP")
+    Rel(providerSvc, msgBroker, "Publica ServiceStatusUpdatedEvent", "AMQP")
+    
+    %% Flujos internos dentro de Booking
+    Rel(bookingsCtrl, bookingSvc, "Delega")
+    Rel(msgBroker, serviceStatusConsumer, "Consume ServiceStatusUpdatedEvent", "AMQP")
+    Rel(serviceStatusConsumer, bookingSvc, "Llama a")
+    Rel(bookingSvc, bookingRepo, "Usa")
+    Rel(bookingRepo, bookingDb, "SQL", "TCP")
+    Rel(bookingSvc, msgBroker, "Publica BookingConfirmedEvent", "AMQP")
+
+    %% Flujos internos dentro de Billing
+    Rel(msgBroker, bookingConfirmedConsumer, "Consume BookingConfirmedEvent", "AMQP")
+    Rel(bookingConfirmedConsumer, billingSvc, "Llama a")
+
+    %% Otros flujos síncronos pendientes de migrar a eventos
+    Rel(bookingSvc, routingSvc, "Valida ruta")
+    Rel(bookingSvc, alertSvc, "Notifica estado")
+
+    %% Integraciones a Sistemas Externos
+    Rel(billingSvc, paymentGateway, "HTTP POST")
+    Rel(routingSvc, mapService, "HTTP GET")
+    Rel(alertSvc, notificationService, "HTTP POST")
