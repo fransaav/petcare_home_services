@@ -1,0 +1,72 @@
+C4Component
+    title Diagrama de Componentes (Nivel 3) - Backend API (Monolito Modular)
+
+    %% Elementos externos al API
+    Container(app, "App Móvil / Web", "Flutter", "Llama a la API")
+    
+    System_Ext(paymentGateway, "Pagos", "Stripe")
+    System_Ext(notificationService, "Notificaciones", "SendGrid")
+    System_Ext(mapService, "Mapas", "Google Maps")
+
+    Container_Boundary(api, "Backend API (.NET Core)") {
+        
+        System_Boundary(modIdentityPets, "Module: IdentityAndPets") {
+            Component(customersCtrl, "Customers Controller", "REST", "Endpoints de clientes")
+            Component(customerSvc, "Customer Service", "C#", "Lógica de perfiles y mascotas")
+            Component(customerRepo, "Customer Repo", "EF Core", "CRUD Clientes")
+            ComponentDb(identityDb, "IdentityAndPets DbContext", "SQL Server", "Datos de usuarios y mascotas")
+        }
+        
+        System_Boundary(modProviders, "Module: Providers") {
+            Component(providersCtrl, "Providers Controller", "REST", "Endpoints de proveedores")
+            Component(providerSvc, "Provider Service", "C#", "Lógica y disponibilidad")
+            Component(providerRepo, "Provider Repo", "EF Core", "CRUD Proveedores")
+            ComponentDb(providersDb, "Providers DbContext", "SQL Server", "Datos de proveedores")
+        }
+        
+        System_Boundary(modBooking, "Module: Booking") {
+            Component(bookingsCtrl, "Bookings Controller", "REST", "Endpoints de reservas")
+            Component(bookingSvc, "Booking Service", "C#", "Orquestador de reservas")
+            Component(bookingRepo, "Booking Repo", "EF Core", "CRUD Reservas")
+            ComponentDb(bookingDb, "Booking DbContext", "SQL Server", "Datos de reservas")
+        }
+        
+        System_Boundary(modBilling, "Module: Billing") {
+            Component(billingSvc, "Billing Service", "C#", "Lógica de cobros y promociones")
+            ComponentDb(billingDb, "Billing DbContext", "SQL Server", "Datos de pagos y facturación")
+        }
+        
+        %% Componentes transversales o integraciones
+        Component(routingSvc, "Routing Service", "C#", "Cálculo de logística a domicilio")
+        Component(alertSvc, "Alert Service", "C#", "Gestor de notificaciones")
+    }
+
+    %% App llama a los controladores
+    Rel_D(app, customersCtrl, "Llama a", "HTTPS")
+    Rel_D(app, providersCtrl, "Llama a", "HTTPS")
+    Rel_D(app, bookingsCtrl, "Llama a", "HTTPS")
+
+    %% Flujos internos dentro de IdentityAndPets
+    Rel_D(customersCtrl, customerSvc, "Delega")
+    Rel_D(customerSvc, customerRepo, "Usa")
+    Rel_D(customerRepo, identityDb, "SQL", "TCP")
+    
+    %% Flujos internos dentro de Providers
+    Rel_D(providersCtrl, providerSvc, "Delega")
+    Rel_D(providerSvc, providerRepo, "Usa")
+    Rel_D(providerRepo, providersDb, "SQL", "TCP")
+    
+    %% Flujos internos dentro de Booking
+    Rel_D(bookingsCtrl, bookingSvc, "Delega")
+    Rel_D(bookingSvc, bookingRepo, "Usa")
+    Rel_D(bookingRepo, bookingDb, "SQL", "TCP")
+
+    %% Servicios de Dominio interactúan con otros Módulos / Integraciones
+    Rel_D(bookingSvc, billingSvc, "Informa reserva para cobro")
+    Rel_D(bookingSvc, routingSvc, "Valida ruta")
+    Rel_D(bookingSvc, alertSvc, "Notifica estado")
+
+    %% Integraciones a Sistemas Externos
+    Rel_D(billingSvc, paymentGateway, "HTTP POST")
+    Rel_D(routingSvc, mapService, "HTTP GET")
+    Rel_D(alertSvc, notificationService, "HTTP POST")

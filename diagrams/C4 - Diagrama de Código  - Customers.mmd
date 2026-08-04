@@ -1,0 +1,75 @@
+classDiagram
+    direction TB
+    
+    %% Capa de Presentación / API
+    class CustomersController {
+        -ICustomerService _customerService
+        +GetAll() Task
+        +GetById(Guid id) Task
+        +Create(Customer customer) Task
+    }
+
+    %% Capa de Aplicación
+    class ICustomerService {
+        <<interface>>
+        +GetCustomerByIdAsync(Guid id) Task
+        +GetAllCustomersAsync() Task
+        +CreateCustomerAsync(Customer customer) Task
+    }
+
+    class CustomerService {
+        -ICustomerRepository _repository
+        +GetCustomerByIdAsync(Guid id) Task
+        +GetAllCustomersAsync() Task
+        +CreateCustomerAsync(Customer customer) Task
+    }
+
+    %% Capa de Infraestructura (Repositorios)
+    class ICustomerRepository {
+        <<interface>>
+        +GetByIdAsync(Guid id) Task
+        +GetAllAsync() Task
+        +AddAsync(Customer customer) Task
+        +SaveChangesAsync() Task
+    }
+
+    class CustomerRepository {
+        -IdentityAndPetsDbContext _context
+        +GetByIdAsync(Guid id) Task
+        +GetAllAsync() Task
+        +AddAsync(Customer customer) Task
+        +SaveChangesAsync() Task
+    }
+
+    %% Capa de Dominio (Entidades Centrales)
+    class Customer {
+        +Guid Id
+        +string FirstName
+        +string LastName
+        +string Email
+        +string PhoneNumber
+        +string Address
+        +ICollection~Pet~ Pets
+    }
+
+    class Pet {
+        +Guid Id
+        +string Name
+        +string Species
+        +string Breed
+        +double WeightKg
+        +string SpecialRequirements
+        +bool HasVaccinationRecord
+        +Guid CustomerId
+    }
+
+    %% Relaciones de Inyección de Dependencias (DIP) y herencia
+    CustomersController --> ICustomerService : Se inyecta (DI)
+    CustomerService ..|> ICustomerService : Implementa
+    CustomerService --> ICustomerRepository : Se inyecta (DI)
+    CustomerRepository ..|> ICustomerRepository : Implementa
+    
+    %% Relación de uso con las entidades de dominio
+    ICustomerService ..> Customer : Manipula
+    ICustomerRepository ..> Customer : Persiste / Consulta
+    Customer "1" *-- "many" Pet : Contiene

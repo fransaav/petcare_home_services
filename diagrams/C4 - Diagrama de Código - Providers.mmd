@@ -1,0 +1,62 @@
+classDiagram
+    direction TB
+    
+    %% Capa de Presentación / API
+    class ProvidersController {
+        -IProviderService _providerService
+        +GetAll() Task
+        +GetById(Guid id) Task
+        +Create(Provider provider) Task
+    }
+
+    %% Capa de Aplicación
+    class IProviderService {
+        <<interface>>
+        +GetProviderByIdAsync(Guid id) Task
+        +GetAllProvidersAsync() Task
+        +CreateProviderAsync(Provider provider) Task
+    }
+
+    class ProviderService {
+        -IProviderRepository _repository
+        +GetProviderByIdAsync(Guid id) Task
+        +GetAllProvidersAsync() Task
+        +CreateProviderAsync(Provider provider) Task
+    }
+
+    %% Capa de Infraestructura (Repositorios)
+    class IProviderRepository {
+        <<interface>>
+        +GetByIdAsync(Guid id) Task
+        +GetAllAsync() Task
+        +AddAsync(Provider provider) Task
+        +SaveChangesAsync() Task
+    }
+
+    class ProviderRepository {
+        -ProvidersDbContext _context
+        +GetByIdAsync(Guid id) Task
+        +GetAllAsync() Task
+        +AddAsync(Provider provider) Task
+        +SaveChangesAsync() Task
+    }
+
+    %% Capa de Dominio (Entidad Central)
+    class Provider {
+        +Guid Id
+        +string Name
+        +string ServiceTypes
+        +string ServiceArea
+        +int MaxDailyCapacity
+        +bool IsActive
+    }
+
+    %% Relaciones de Inyección de Dependencias (DIP) y herencia
+    ProvidersController --> IProviderService : Se inyecta (DI)
+    ProviderService ..|> IProviderService : Implementa
+    ProviderService --> IProviderRepository : Se inyecta (DI)
+    ProviderRepository ..|> IProviderRepository : Implementa
+    
+    %% Relación de uso con la entidad de dominio
+    IProviderService ..> Provider : Manipula
+    IProviderRepository ..> Provider : Persiste / Consulta

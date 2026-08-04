@@ -1,0 +1,34 @@
+C4Container
+    title Diagrama de Contenedores (Nivel 2) - Pet Care Services
+
+    %% Actores en la cima
+    Person(customer, "Cliente", "Dueño de mascota.")
+    Person(provider, "Proveedor", "Ofrece servicios.")
+    
+    %% Contenedores centrales (El Sistema)
+    System_Boundary(petcare, "Sistema Pet Care Services") {
+        Container(app, "App Móvil / Web", "Flutter", "Interfaz gráfica para los usuarios.")
+        Container(api, "Backend API (Monolito Modular)", ".NET Core", "Endpoints y módulos de negocio independientes.")
+        ContainerDb(db, "Bases de Datos por Módulo", "SQL Server", "Múltiples contextos de base de datos aislados.")
+    }
+    
+    %% Sistemas Externos en la base
+    System_Ext(paymentGateway, "Pagos", "Stripe / PayPal")
+    System_Ext(notificationService, "Notificaciones", "SendGrid / Twilio")
+    System_Ext(mapService, "Mapas", "Google Maps")
+
+    %% Relaciones hacia ABAJO (Cascada vertical)
+    Rel_D(customer, app, "Reserva", "App")
+    Rel_D(provider, app, "Gestiona", "App")
+    
+    Rel_D(app, api, "Consume", "HTTPS")
+    Rel_D(api, db, "Consulta", "TCP")
+    
+    %% Desde el Backend hacia las integraciones externas
+    Rel_D(api, paymentGateway, "Paga", "API")
+    Rel_D(api, mapService, "Rutas", "API")
+    Rel_D(api, notificationService, "Encola msjs", "API")
+    
+    %% Notificaciones regresando hacia arriba (texto corto para no solapar)
+    Rel_U(notificationService, customer, "Alerta")
+    Rel_U(notificationService, provider, "Alerta")
