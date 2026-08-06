@@ -1,6 +1,93 @@
-@PetCare.API_HostAddress = http://localhost:5078
+@PetCare.API_HostAddress = https://localhost:7196
+@HttpHost = http://localhost:5078
 
-GET {{PetCare.API_HostAddress}}/weatherforecast/
+### Obtener todos los clientes
+GET {{HttpHost}}/api/customers
 Accept: application/json
+
+###
+
+### 1. Crear un Cliente (Customer)
+# @name createCustomer
+POST {{HttpHost}}/api/customers
+Content-Type: application/json
+
+{
+  "firstName": "Juan",
+  "lastName": "Pérez",
+  "email": "juan.perez@example.com",
+  "phoneNumber": "+59170012345",
+  "address": "Av. Busch, Santa Cruz"
+}
+
+###
+
+### 2. Agregar una Mascota (Pet) al Cliente creado
+# Pega el ID del cliente devuelto en la petición anterior donde dice {customerId}
+@customerId = REEMPLAZA_CON_ID_DEL_CLIENTE
+
+POST {{HttpHost}}/api/customers/{{customerId}}/pets
+Content-Type: application/json
+
+{
+  "name": "Firulais",
+  "species": "Dog",
+  "breed": "Golden Retriever",
+  "weightKg": 25.5,
+  "specialRequirements": "Ninguno",
+  "hasVaccinationRecord": true
+}
+
+###
+
+### 3. Crear un Proveedor (Provider)
+# @name createProvider
+POST {{HttpHost}}/api/providers
+Content-Type: application/json
+
+{
+  "name": "Pet Paradise Grooming",
+  "serviceTypes": "Grooming, Vet",
+  "serviceArea": "Santa Cruz de la Sierra",
+  "maxDailyCapacity": 10,
+  "isActive": true
+}
+
+###
+
+### 4. Crear una Reserva (Booking)
+# Reemplaza los GUIDs con los IDs reales obtenidos en los pasos 1, 2 y 3.
+@petId = REEMPLAZA_CON_ID_DE_LA_MASCOTA
+@providerId = REEMPLAZA_CON_ID_DEL_PROVEEDOR
+
+POST {{HttpHost}}/api/bookings
+Content-Type: application/json
+
+{
+  "customerId": "{{customerId}}",
+  "petId": "{{petId}}",
+  "providerId": "{{providerId}}",
+  "serviceType": "Grooming",
+  "modality": "HomeVisit",
+  "scheduledTime": "2026-08-10T10:00:00Z",
+  "status": "Pending",
+  "totalCost": 150.00
+}
+
+###
+
+### 5. Confirmar Reserva (Dispara Evento BookingConfirmedEvent -> consumido por Billing)
+# Reemplaza el GUID con el ID de la reserva obtenida en el paso 4
+@bookingId = REEMPLAZA_CON_ID_DE_LA_RESERVA
+
+POST {{HttpHost}}/api/bookings/{{bookingId}}/confirm
+Content-Type: application/json
+
+###
+
+### 6. Actualizar Estado del Servicio (Dispara Evento ServiceStatusUpdatedEvent -> consumido por Booking)
+# El Proveedor actualiza el estado de la reserva (ej. Completed)
+POST {{HttpHost}}/api/providers/update-booking-status?bookingId={{bookingId}}&newStatus=Completed
+Content-Type: application/json
 
 ###

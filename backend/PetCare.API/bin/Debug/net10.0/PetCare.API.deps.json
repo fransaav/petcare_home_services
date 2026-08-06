@@ -16,7 +16,8 @@
           "PetCare.Modules.Billing": "1.0.0",
           "PetCare.Modules.Booking": "1.0.0",
           "PetCare.Modules.IdentityAndPets": "1.0.0",
-          "PetCare.Modules.Providers": "1.0.0"
+          "PetCare.Modules.Providers": "1.0.0",
+          "Scalar.AspNetCore": "2.16.17"
         },
         "runtime": {
           "PetCare.API.dll": {}
@@ -693,6 +694,14 @@
           }
         }
       },
+      "Scalar.AspNetCore/2.16.17": {
+        "runtime": {
+          "lib/net10.0/Scalar.AspNetCore.dll": {
+            "assemblyVersion": "2.16.17.0",
+            "fileVersion": "2.16.17.0"
+          }
+        }
+      },
       "System.ClientModel/1.5.1": {
         "dependencies": {
           "System.Memory.Data": "8.0.1"
@@ -1142,6 +1151,13 @@
       "sha512": "sha512-8YJz22mOSMtkbIVuVSz2HbJwbpKwRoXQ1uqbczDUt1w1Ds8dxFs6dkV/oZ8AlTmkErZjtQelHv+oBu52ud00WA==",
       "path": "rabbitmq.client/7.0.0",
       "hashPath": "rabbitmq.client.7.0.0.nupkg.sha512"
+    },
+    "Scalar.AspNetCore/2.16.17": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-J5FyUxdZE/QbS/s3NSE6XWoBIJwta1eOUBuDbieHm2HSfFELH8hOnxSsoEBreckoekfZ7STsMCMGmmUNPVVosg==",
+      "path": "scalar.aspnetcore/2.16.17",
+      "hashPath": "scalar.aspnetcore.2.16.17.nupkg.sha512"
     },
     "System.ClientModel/1.5.1": {
       "type": "package",

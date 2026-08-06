@@ -36,4 +36,11 @@ public class ProvidersController : ControllerBase
         var created = await _providerService.CreateProviderAsync(provider);
         return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
     }
+
+    [HttpPost("update-booking-status")]
+    public async Task<IActionResult> UpdateBookingStatus([FromQuery] Guid bookingId, [FromQuery] string newStatus)
+    {
+        await _providerService.UpdateServiceStatusAsync(bookingId, newStatus);
+        return Ok(new { Message = "Service status updated and event published." });
+    }
 }

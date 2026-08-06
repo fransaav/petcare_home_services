@@ -15,23 +15,5 @@ public class BookingDbContext : DbContext
     {
         modelBuilder.HasDefaultSchema("booking");
         base.OnModelCreating(modelBuilder);
-
-        modelBuilder.Entity<PetCare.Modules.Booking.Domain.Booking>()
-            .HasOne(b => b.Customer)
-            .WithMany()
-            .HasForeignKey(b => b.CustomerId)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder.Entity<PetCare.Modules.Booking.Domain.Booking>()
-            .HasOne(b => b.Pet)
-            .WithMany()
-            .HasForeignKey(b => b.PetId)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder.Entity<PetCare.Modules.Booking.Domain.Booking>()
-            .HasOne(b => b.Provider)
-            .WithMany()
-            .HasForeignKey(b => b.ProviderId)
-            .OnDelete(DeleteBehavior.Restrict);
     }
 }

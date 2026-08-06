@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "q3phsTUoFvE=",
+  "dgSpecHash": "ufwRw7k5p7E=",
   "success": true,
-  "projectFilePath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Booking\\PetCare.Modules.Booking.csproj",
+  "projectFilePath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.Booking\\PetCare.Modules.Booking.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\franc\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\franc\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",

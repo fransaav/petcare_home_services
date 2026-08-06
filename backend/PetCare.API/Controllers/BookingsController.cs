@@ -36,4 +36,11 @@ public class BookingsController : ControllerBase
         var created = await _bookingService.CreateBookingAsync(booking);
         return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
     }
+
+    [HttpPost("{id}/confirm")]
+    public async Task<IActionResult> Confirm(Guid id)
+    {
+        await _bookingService.ConfirmBookingAsync(id);
+        return Ok(new { Message = "Booking confirmed and event published." });
+    }
 }

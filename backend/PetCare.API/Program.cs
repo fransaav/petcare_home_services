@@ -1,3 +1,4 @@
+using PetCare.API.Extensions;
 using PetCare.Modules.IdentityAndPets;
 using PetCare.Modules.Booking;
 using PetCare.Modules.Providers;
@@ -6,6 +7,7 @@ using MassTransit;
 using PetCare.Modules.Booking.Application.Consumers;
 using PetCare.Modules.Billing.Application.Consumers;
 using System.Text.Json.Serialization;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,9 +45,13 @@ builder.Services.AddMassTransit(x =>
 
 var app = builder.Build();
 
+// Inicializar la base de datos con datos de prueba
+await app.SeedDataAsync();
+
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.MapScalarApiReference();
 }
 
 app.UseHttpsRedirection();

@@ -23,18 +23,12 @@ public class BookingRepository : IBookingRepository
     public async Task<IEnumerable<Domain.Booking>> GetAllAsync()
     {
         return await _context.Bookings
-            .Include(b => b.Customer)
-            .Include(b => b.Pet)
-            .Include(b => b.Provider)
             .ToListAsync();
     }
 
     public async Task<Domain.Booking?> GetByIdAsync(Guid id)
     {
         return await _context.Bookings
-            .Include(b => b.Customer)
-            .Include(b => b.Pet)
-            .Include(b => b.Provider)
             .FirstOrDefaultAsync(b => b.Id == id);
     }
 

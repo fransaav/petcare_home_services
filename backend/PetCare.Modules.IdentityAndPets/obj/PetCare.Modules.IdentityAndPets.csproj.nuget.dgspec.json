@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj": {}
+    "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj": {}
   },
   "projects": {
-    "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj": {
+    "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj",
+        "projectUniqueName": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj",
         "projectName": "PetCare.Modules.IdentityAndPets",
-        "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj",
+        "projectPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj",
         "packagesPath": "C:\\Users\\franc\\.nuget\\packages\\",
-        "outputPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.IdentityAndPets\\obj\\",
+        "outputPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.IdentityAndPets\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.API\\PetCare.API.csproj": {}
+    "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.API\\PetCare.API.csproj": {}
   },
   "projects": {
-    "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.API\\PetCare.API.csproj": {
+    "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.API\\PetCare.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.API\\PetCare.API.csproj",
+        "projectUniqueName": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.API\\PetCare.API.csproj",
         "projectName": "PetCare.API",
-        "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.API\\PetCare.API.csproj",
+        "projectPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.API\\PetCare.API.csproj",
         "packagesPath": "C:\\Users\\franc\\.nuget\\packages\\",
-        "outputPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.API\\obj\\",
+        "outputPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,20 +33,20 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj": {
-                "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj"
+              "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj": {
+                "projectPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj"
               },
-              "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Billing\\PetCare.Modules.Billing.csproj": {
-                "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Billing\\PetCare.Modules.Billing.csproj"
+              "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.Billing\\PetCare.Modules.Billing.csproj": {
+                "projectPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.Billing\\PetCare.Modules.Billing.csproj"
               },
-              "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Booking\\PetCare.Modules.Booking.csproj": {
-                "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Booking\\PetCare.Modules.Booking.csproj"
+              "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.Booking\\PetCare.Modules.Booking.csproj": {
+                "projectPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.Booking\\PetCare.Modules.Booking.csproj"
               },
-              "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj": {
-                "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj"
+              "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj": {
+                "projectPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj"
               },
-              "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Providers\\PetCare.Modules.Providers.csproj": {
-                "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Providers\\PetCare.Modules.Providers.csproj"
+              "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.Providers\\PetCare.Modules.Providers.csproj": {
+                "projectPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.Providers\\PetCare.Modules.Providers.csproj"
               }
             }
           }
@@ -85,6 +85,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[10.0.10, )"
+            },
+            "Scalar.AspNetCore": {
+              "target": "Package",
+              "version": "[2.16.17, )"
             }
           },
           "imports": [
@@ -524,14 +528,14 @@
         }
       }
     },
-    "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj": {
+    "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj",
+        "projectUniqueName": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj",
         "projectName": "PetCare.IntegrationEvents",
-        "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj",
+        "projectPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj",
         "packagesPath": "C:\\Users\\franc\\.nuget\\packages\\",
-        "outputPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.IntegrationEvents\\obj\\",
+        "outputPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.IntegrationEvents\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -865,14 +869,14 @@
         }
       }
     },
-    "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Billing\\PetCare.Modules.Billing.csproj": {
+    "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.Billing\\PetCare.Modules.Billing.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Billing\\PetCare.Modules.Billing.csproj",
+        "projectUniqueName": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.Billing\\PetCare.Modules.Billing.csproj",
         "projectName": "PetCare.Modules.Billing",
-        "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Billing\\PetCare.Modules.Billing.csproj",
+        "projectPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.Billing\\PetCare.Modules.Billing.csproj",
         "packagesPath": "C:\\Users\\franc\\.nuget\\packages\\",
-        "outputPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Billing\\obj\\",
+        "outputPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.Billing\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -894,11 +898,11 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj": {
-                "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj"
+              "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj": {
+                "projectPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj"
               },
-              "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Booking\\PetCare.Modules.Booking.csproj": {
-                "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Booking\\PetCare.Modules.Booking.csproj"
+              "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.Booking\\PetCare.Modules.Booking.csproj": {
+                "projectPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.Booking\\PetCare.Modules.Booking.csproj"
               }
             }
           }
@@ -1231,14 +1235,14 @@
         }
       }
     },
-    "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Booking\\PetCare.Modules.Booking.csproj": {
+    "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.Booking\\PetCare.Modules.Booking.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Booking\\PetCare.Modules.Booking.csproj",
+        "projectUniqueName": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.Booking\\PetCare.Modules.Booking.csproj",
         "projectName": "PetCare.Modules.Booking",
-        "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Booking\\PetCare.Modules.Booking.csproj",
+        "projectPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.Booking\\PetCare.Modules.Booking.csproj",
         "packagesPath": "C:\\Users\\franc\\.nuget\\packages\\",
-        "outputPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Booking\\obj\\",
+        "outputPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.Booking\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1260,14 +1264,14 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj": {
-                "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj"
+              "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj": {
+                "projectPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj"
               },
-              "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj": {
-                "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj"
+              "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj": {
+                "projectPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj"
               },
-              "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Providers\\PetCare.Modules.Providers.csproj": {
-                "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Providers\\PetCare.Modules.Providers.csproj"
+              "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.Providers\\PetCare.Modules.Providers.csproj": {
+                "projectPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.Providers\\PetCare.Modules.Providers.csproj"
               }
             }
           }
@@ -1600,14 +1604,14 @@
         }
       }
     },
-    "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj": {
+    "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj",
+        "projectUniqueName": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj",
         "projectName": "PetCare.Modules.IdentityAndPets",
-        "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj",
+        "projectPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.IdentityAndPets\\PetCare.Modules.IdentityAndPets.csproj",
         "packagesPath": "C:\\Users\\franc\\.nuget\\packages\\",
-        "outputPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.IdentityAndPets\\obj\\",
+        "outputPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.IdentityAndPets\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1955,14 +1959,14 @@
         }
       }
     },
-    "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Providers\\PetCare.Modules.Providers.csproj": {
+    "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.Providers\\PetCare.Modules.Providers.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Providers\\PetCare.Modules.Providers.csproj",
+        "projectUniqueName": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.Providers\\PetCare.Modules.Providers.csproj",
         "projectName": "PetCare.Modules.Providers",
-        "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Providers\\PetCare.Modules.Providers.csproj",
+        "projectPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.Providers\\PetCare.Modules.Providers.csproj",
         "packagesPath": "C:\\Users\\franc\\.nuget\\packages\\",
-        "outputPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.Modules.Providers\\obj\\",
+        "outputPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.Modules.Providers\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1984,8 +1988,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj": {
-                "projectPath": "C:\\_Source\\Personal\\PetServices\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj"
+              "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj": {
+                "projectPath": "C:\\_Source\\Franco\\pet_care_services\\backend\\PetCare.IntegrationEvents\\PetCare.IntegrationEvents.csproj"
               }
             }
           }
