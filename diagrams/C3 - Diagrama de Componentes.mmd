@@ -34,13 +34,16 @@ C4Component
             ComponentDb(billingDb, "Billing DbContext", "SQL Server", "Datos de pagos y facturación")
         }
         
-        %% Componentes transversales o integraciones
-        Component(msgBroker, "RabbitMQ", "Message Broker", "Bus de Eventos")
+        System_Boundary(msgBroker, "Message Broker (RabbitMQ)") {
+            ComponentQueue(serviceStatusUpdatedQueue, "ServiceStatusUpdatedQueue", "AMQP", "Cola de estados de servicio")
+            ComponentQueue(bookingConfirmedQueue, "BookingConfirmedQueue", "AMQP", "Cola de reservas confirmadas")
+        }
         Component(routingSvc, "Routing Service", "C#", "Cálculo de logística a domicilio")
         Component(alertSvc, "Alert Service", "C#", "Gestor de notificaciones")
     }
 
     System_Ext(paymentGateway, "Pagos", "Stripe")
+    System_Ext(notificationService, "Notificaciones", "SendGrid")
     System_Ext(notificationService, "Notificaciones", "SendGrid")
     System_Ext(mapService, "Mapas", "Google Maps")
 
@@ -61,18 +64,18 @@ C4Component
     Rel(providersCtrl, providerSvc, "Delega")
     Rel(providerSvc, providerRepo, "Usa")
     Rel(providerRepo, providersDb, "SQL", "TCP")
-    Rel(providerSvc, msgBroker, "Publica ServiceStatusUpdatedEvent", "AMQP")
+    Rel(providerSvc, serviceStatusUpdatedQueue, "Publica evento", "AMQP")
     
     %% Flujos internos dentro de Booking
     Rel(bookingsCtrl, bookingSvc, "Delega")
-    Rel(msgBroker, serviceStatusConsumer, "Consume ServiceStatusUpdatedEvent", "AMQP")
+    Rel(serviceStatusUpdatedQueue, serviceStatusConsumer, "Consume evento", "AMQP")
     Rel(serviceStatusConsumer, bookingSvc, "Llama a")
     Rel(bookingSvc, bookingRepo, "Usa")
     Rel(bookingRepo, bookingDb, "SQL", "TCP")
-    Rel(bookingSvc, msgBroker, "Publica BookingConfirmedEvent", "AMQP")
+    Rel(bookingSvc, bookingConfirmedQueue, "Publica evento", "AMQP")
 
     %% Flujos internos dentro de Billing
-    Rel(msgBroker, bookingConfirmedConsumer, "Consume BookingConfirmedEvent", "AMQP")
+    Rel(bookingConfirmedQueue, bookingConfirmedConsumer, "Consume evento", "AMQP")
     Rel(bookingConfirmedConsumer, billingSvc, "Llama a")
 
     %% Otros flujos síncronos pendientes de migrar a eventos

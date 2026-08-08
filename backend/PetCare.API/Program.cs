@@ -38,7 +38,15 @@ builder.Services.AddMassTransit(x =>
             h.Password("guest");
         });
 
-        cfg.ConfigureEndpoints(context);
+        cfg.ReceiveEndpoint("ServiceStatusUpdatedQueue", e =>
+        {
+            e.ConfigureConsumer<ServiceStatusUpdatedEventConsumer>(context);
+        });
+
+        cfg.ReceiveEndpoint("BookingConfirmedQueue", e =>
+        {
+            e.ConfigureConsumer<BookingConfirmedEventConsumer>(context);
+        });
     });
 });
 
